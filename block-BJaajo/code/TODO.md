@@ -15,8 +15,8 @@ console.log('First');
 function secondCall() {
   console.log('Second');
 }
-setTimeout(secondCall, 2000); // execute this code after 1000 ms
-setTimeout(() => console.log('Third'), 0); // execute this code after 1000 ms
+setTimeout(secondCall, 2000); // execute this code after 2000 ms
+setTimeout(() => console.log('Third'), 0); // execute this code after 2000 ms
 console.log('Third');
 ```
 
@@ -54,19 +54,27 @@ function runWhileLoopForNSeconds(sec) {
     now = Date.now();
   }
 }
-console.log('First');
+console.log('First'); //0 sec
 setTimeout(function exec() {
-  console.log('Second');
+  console.log('Second');// after 3sec
 }, 0);
-runWhileLoopForNSeconds(3);
-console.log('Third');
+runWhileLoopForNSeconds(3);//3 sec
+console.log('Third'); // after 3sec
 ```
+output:- 
+first 
+third 
+second
 
 6. Convert the synchronous code given below into asynchronous. If you execute this code it will print one, two and three. Change the code in such a way that it should print `one`, `three` and `two`. You are not allowed to move the code up and down.
 
 ```js
+// console.log('one');
+// console.log('two');
+// console.log('three');
+
 console.log('one');
-console.log('two');
+setTimeout(()=>{console.log('two')},0)
 console.log('three');
 ```
 
@@ -81,26 +89,44 @@ console.log('three');
 8. Write a function named `asyncForEach` that is similar to `forEach`. But `asyncForEach` is asynchronous in nature rather than synchronous.
 
 ```js
-funciton asyncForEach(){
-  //
+function asyncForEach(arr, callback){
+  for(let i = 0; i < arr.length; i++){
+    setTimeout(()=>callback(arr[i]) , 0);
+  }
 }
-//  Output of the function below should be
-// one
-// three
-//  1, 2, 3
 
 console.log('one');
 asyncForEach([1, 2, 3], (num) => console.log(num));
 console.log('three');
+//  Output of the function below should be
+// one
+// three
+//  1, 2, 3
 ```
 
 9. Convert the following function into asynchronous. The output of the function will be
+
+```js
+Array.prototype.firEach = function(callback){
+  for(let i = 0; i < this.length; i++){
+    callback(this[i])
+  }
+}
+```
 
 <!-- First Call -->
 <!-- 1, 2, 3, 4, 5 -->
 <!-- Last Call -->
 
 Convert the code below in such way that the output should be the one below
+
+```js
+Array.prototype.firEach = function(callback){
+  for(let i = 0; i < this.length; i++){
+    setTimeout(() => callback(this[i]), 0)
+  }
+}
+```
 
 <!-- First Call -->
 <!-- Last Call -->
