@@ -1,12 +1,16 @@
 const source = document.querySelector('#source');
 const root = document.querySelector('.root');
+let allnews;
 
 source.addEventListener('change', (event) => {
-    fetch('https://api.spaceflightnewsapi.net/v3/articles?_limit=30')
-    .then((res) => res.json())
-    .then(arr => arr.filter(ele => {
+   if(event.target.value === 'default'){
+    createUI(allnews);
+   }else{
+    let filteredNews = allnews.filter(ele => {
         return ele.newsSite.toLowerCase().split(" ").join("") === event.target.value;
-    })).then(createUI)
+    })
+    createUI(filteredNews);
+   }
 });
 
 function createUI(news) {
@@ -30,4 +34,9 @@ function createUI(news) {
 
 fetch('https://api.spaceflightnewsapi.net/v3/articles?_limit=30')
   .then((res) => res.json())
-  .then(createUI);
+  .then((data)=>{
+      allnews = data;
+      createUI(data);
+  });
+
+ 
