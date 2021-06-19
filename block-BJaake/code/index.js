@@ -22,7 +22,7 @@ function createUI(news) {
           </div>
           <div class="flex-56">
               <h3>${eachNews.newsSite}</h3>
-              <p>${eachNews.summary}</p>
+              <p>${eachNews.title}</p>
               <a href="${eachNews.url}" target='_blank'>Read More</a>
           </div>`
         let article = document.createElement('article');
