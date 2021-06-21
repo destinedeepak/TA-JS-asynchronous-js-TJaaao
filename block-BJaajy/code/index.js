@@ -16,13 +16,13 @@ Promise.all([p1,p2,p3,p4]).then(res =>console.log(res));
 
 
 
-// const userNames = ['destinedeepak'];
+const userNames = ['destinedeepak'];
 
-// let usersPromises  = Promise.all(userNames.map(user => {
-//     fetch(`https://api.github.com/users/${user}`)
-//     .then(res=> res.json())
-//     .then(data => console.log(data.followers))
-// }));
+let usersPromises  = Promise.all(userNames.map(user => {
+    fetch(`https://api.github.com/users/${user}`)
+    .then(res=> res.json())
+    .then(data => console.log(data.followers))
+}));
 
 
 
